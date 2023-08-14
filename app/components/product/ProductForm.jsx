@@ -1,19 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import upload from "../utils/upload";
+import { useState } from "react";
+import upload from "../../utils/upload";
 import Image from "next/image";
 import { AiOutlineCloseCircle } from "react-icons/ai";
-import Spinner from "../components/Spinner";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-const ProductUpdateForm = ({ params }) => {
+const ProductForm = () => {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [price, setPrice] = useState("");
   const [countInStock, setCountInStock] = useState("");
+
   const [loading, setLoading] = useState(false);
   // Image
   const [file, setFile] = useState([]);
@@ -29,70 +29,29 @@ const ProductUpdateForm = ({ params }) => {
   const [size, setSize] = useState([]);
 
   const router = useRouter();
-  const { productId } = params;
 
-  // GetProductByID
-  useEffect(() => {
-    if (!productId) {
-      return;
-    }
-    setLoading(true);
-    axios
-      .get("/api/product/id", {
-        params: {
-          productId: productId,
-        },
-      })
-      .then((response) => {
-        const {
-          title,
-          desc,
-          img,
-          categories,
-          brand,
-          size,
-          price,
-          countInStock,
-        } = response.data;
-        setTitle(title);
-        setDesc(desc);
-        setPrice(price);
-        setCountInStock(countInStock);
-        setPreviewImage(img);
-        setCategories(categories);
-        setBrand(brand);
-        setSize(size);
-        setLoading(false);
-      });
-    setLoading(false);
-  }, [productId]);
-
-  // Update Product
   async function handleForm(ev) {
     ev.preventDefault();
 
     try {
       setLoading(true);
-      const res = await axios.put(
-        `/api/product/update?productId=${productId}`,
-        {
-          title,
-          desc,
-          img: previewImage,
-          categories,
-          brand,
-          size,
-          price,
-          countInStock,
-        }
-      );
+      const res = await axios.post("/api/product/add", {
+        title,
+        desc,
+        img: previewImage,
+        categories,
+        brand,
+        size,
+        price,
+        countInStock,
+      });
       if (res.data) {
-        router.refresh();
-        toast.success("Product Updated");
+        router.push("/admin/products");
+        toast.success("Product Added");
       }
     } catch (error) {
-      toast.error("Error Update Product!");
-      console.log(error, "UPDATE_PRODUCT");
+      toast.error("Error Add Product!");
+      console.log(error, "ADD_PRODUCT");
     } finally {
       setLoading(false);
     }
@@ -336,7 +295,7 @@ const ProductUpdateForm = ({ params }) => {
             className="px-3 py-2 bg-[#E83C00] text-white font-bold rounded-lg mt-10"
             type="submit"
           >
-            {loading ? "Loading..." : "Update Product"}
+            {loading ? "Loading..." : "Create Product"}
           </button>
         </form>
       )}
@@ -344,4 +303,4 @@ const ProductUpdateForm = ({ params }) => {
   );
 };
 
-export default ProductUpdateForm;
+export default ProductForm;

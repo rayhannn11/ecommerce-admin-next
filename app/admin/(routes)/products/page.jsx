@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import ProductsComponent from "../../../components/ProductsComponent";
+import ProductsComponent from "../../../components/product/ProductsComponent";
 
 const Products = async () => {
   return (

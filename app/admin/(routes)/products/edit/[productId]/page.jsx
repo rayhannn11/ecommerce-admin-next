@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ProductUpdateForm from "../../../../../components/ProductUpdateForm";
+import ProductUpdateForm from "../../../../../components/product/ProductUpdateForm";
 import { BsArrowLeftCircleFill } from "react-icons/bs";
 
 const EditProductPage = ({ params }) => {

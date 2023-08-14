@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ProductForm from "../../../../components/ProductForm";
+import ProductForm from "../../../../components/product/ProductForm";
 import { BsArrowLeftCircleFill } from "react-icons/bs";
 
 const ProductAdd = async () => {

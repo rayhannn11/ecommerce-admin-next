@@ -46,7 +46,7 @@ const DesktopSidebar = () => {
         </ul>
       </nav>
       {/* Footer Sidebar */}
-      <nav className="mt-4 pb-4 flex justify-start gap-3 items-center">
+      <nav className="mt-4 pb-4 flex justify-start gap-3 items-center ">
         {/* Image Admin */}
         <div className="relative inline-block rounded-full overflow-hidden h-9 w-9 md:h-11 md:w-11 ">
           <Image
