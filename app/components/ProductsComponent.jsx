@@ -1,25 +1,28 @@
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Image from "next/image";
 import { toast } from "react-hot-toast";
-import Spinner from "./Spinner";
+import { useRouter } from "next/navigation";
 
 const ProductsComponent = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const router = useRouter();
   var nf = new Intl.NumberFormat();
 
   useEffect(() => {
+    setLoading(true);
     axios.get("/api/product/get").then((response) => {
       setProducts(response.data);
+      setLoading(false);
     });
+    setLoading(false);
   }, []);
 
   async function handleButton(type, id) {
     if (type === "update") {
-      // Todo Update
+      router.push(`/admin/products/edit/${id}`);
     } else {
       try {
         setLoading(true);
@@ -63,7 +66,10 @@ const ProductsComponent = () => {
               <td>{product?.sold} Unit</td>
               <td>{product?.totalStars} Star</td>
               <td>
-                <button className="btn-table bg-[#3C91BF] text-white mr-6">
+                <button
+                  className="btn-table bg-[#3C91BF] text-white mr-6"
+                  onClick={() => handleButton("update", product._id)}
+                >
                   Edit
                 </button>
                 <button
