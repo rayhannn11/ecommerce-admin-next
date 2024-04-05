@@ -1,11 +1,11 @@
-import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-import clientPromise from "../../../libs/mongodb";
+import NextAuth from 'next-auth';
+import GoogleProvider from 'next-auth/providers/google';
+import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
+import clientPromise from '../../../libs/mongodb';
 
-const adminEmails = ["rayhan.onepiece@gmail.com"];
+const adminEmails = ['rayhan.onepiece@gmail.com'];
 
-export const authOptions = {
+const authOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
@@ -14,10 +14,10 @@ export const authOptions = {
   ],
   callbacks: {
     async signIn({ account, profile }) {
-      if (account.providerAccountId === "108426223325505426173") {
+      if (account.providerAccountId === '108426223325505426173') {
         return account;
       } else {
-        return "/redirect";
+        return '/redirect';
       }
     },
     session: ({ session, token, user }) => {
@@ -29,10 +29,10 @@ export const authOptions = {
     },
   },
   adapter: MongoDBAdapter(clientPromise),
-  debug: process.env.NODE_ENV === "development",
+  debug: process.env.NODE_ENV === 'development',
   secret: process.env.NEXTAUTH_SECRET,
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
   },
 };
 
