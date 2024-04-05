@@ -11,12 +11,6 @@ const useSidebar = () => {
   const routes = useMemo(
     () => [
       {
-        label: "Dashboard",
-        href: "/admin/dashboard",
-        icon: MdDashboard,
-        active: pathname === "/admin/dashboard",
-      },
-      {
         label: "Products",
         href: "/admin/products",
         icon: LuArchive,

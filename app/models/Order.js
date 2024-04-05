@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const OrderSchema = new mongoose.Schema(
   {
-    email: { type: String, required: true, unique: true, maxlength: 48 },
+    email: { type: String, required: true, unique: false, maxlength: 48 },
     customer: { type: String, required: true, maxlength: 24 },
     products: [
       {
@@ -17,7 +17,9 @@ const OrderSchema = new mongoose.Schema(
         price: { type: Number },
         quantity: {
           type: Number,
-          default: 1,
+        },
+        selectedSize: {
+          type: Number,
         },
         isReview: {
           type: Number,

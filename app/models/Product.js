@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const ProductSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, unique: true, maxlength: 36 },
-    desc: { type: String, required: true, maxlength: 108 },
+    desc: { type: String, required: true, maxlength: 240 },
     img: { type: [String], required: true, maxlength: 480 },
     categories: { type: Array },
     brand: { type: Array },

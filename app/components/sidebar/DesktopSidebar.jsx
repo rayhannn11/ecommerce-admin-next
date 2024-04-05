@@ -26,11 +26,11 @@ const DesktopSidebar = () => {
       {/* Sidebar Header */}
       <nav className="mt-3 flex flex-col justify-between p-3">
         {/* Logo */}
-        <div className="text-[#dc691d] flex gap-4  mb-8 ">
+        <div className="text-[#dc691d] flex gap-4  mb-8 items-center">
           <div className="relative inline-block rounded-full overflow-hidden h-9 w-9 md:h-11 md:w-11 ">
             <Image fill src="/images/logo.jpg" alt="Avatar" />
           </div>
-          <h1>SNEAKER</h1>
+          <h1 className="text-2xl font-bold italic">SNEAKER</h1>
         </div>
         {/* Sidebar Items */}
         <ul role="list" className="flex flex-col items-center space-y-1 w-full">

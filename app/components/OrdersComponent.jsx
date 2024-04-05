@@ -61,7 +61,7 @@ const OrdersComponent = () => {
                 <td>{order._id.slice(0, 5)}...</td>
                 <td>{order.email}</td>
                 <td>{order.customer}</td>
-                <td>{order.total}</td>
+                <td>{nf.format(order.total)}</td>
                 <td>{status[order?.status]}</td>
                 <td>
                   {order.paid < 2 ? (
